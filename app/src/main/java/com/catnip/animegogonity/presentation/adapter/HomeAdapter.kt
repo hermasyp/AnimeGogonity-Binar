@@ -5,10 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
-import com.catnip.animegogonity.data.network.api.model.Anime
 import com.catnip.animegogonity.databinding.ItemHeaderHomeBinding
 import com.catnip.animegogonity.databinding.ItemSectionAnimeBinding
-import com.catnip.animegogonity.presentation.ui.detail.AnimeDetailActivity
 import com.catnip.animegogonity.presentation.uimodel.HOME_TYPE_HEADER
 import com.catnip.animegogonity.presentation.uimodel.HomeItem
 
@@ -76,7 +74,7 @@ class HomeSectionItemViewHolder(private val binding: ItemSectionAnimeBinding) :
 
     private val adapter: AnimeListAdapter by lazy {
         AnimeListAdapter {
-            AnimeDetailActivity.startActivity(itemView.context, it.animeId)
+            //AnimeDetailActivity.startActivity(itemView.context, it.animeId)
         }
     }
 
