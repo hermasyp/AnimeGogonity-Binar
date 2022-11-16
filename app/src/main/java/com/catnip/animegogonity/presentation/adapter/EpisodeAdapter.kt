@@ -10,7 +10,7 @@ import com.catnip.animegogonity.databinding.ItemEpisodeAnimeBinding
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-class EpisodesAdapter(val itemClick:( (Episodes) -> Unit)? = null) :
+class EpisodesAdapter(var itemClick:( (Episodes) -> Unit)? = null) :
     RecyclerView.Adapter<EpisodesAdapter.EpisodesItemViewHolder>() {
 
 
