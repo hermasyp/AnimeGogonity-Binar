@@ -14,7 +14,9 @@ import com.catnip.animegogonity.presentation.uimodel.HomeItem
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-class HomeAdapter : RecyclerView.Adapter<ViewHolder>() {
+class HomeAdapter() :
+    RecyclerView.Adapter<ViewHolder>() {
+
     val data = mutableListOf<HomeItem>()
 
     fun setItems(newData: List<HomeItem>) {

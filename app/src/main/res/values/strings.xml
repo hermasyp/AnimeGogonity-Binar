@@ -5,4 +5,6 @@
     <string name="recent_release_section">Recent Release</string>
     <string name="text_empty_data">No Data</string>
     <string name="text_url_empty">Url is Empty</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
