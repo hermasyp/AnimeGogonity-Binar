@@ -1,12 +1,17 @@
 <resources>
-    <string name="app_name">AnimeGogonity-Binar</string>
+    <string name="app_name">AnimeGogonity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="top_airing_section">Top Airing</string>
     <string name="anime_list_section">Other Anime</string>
     <string name="recent_release_section">Recent Release</string>
     <string name="text_empty_data">No Data</string>
     <string name="text_url_empty">Url is Empty</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_anime_list">Anime List</string>
 
+
+    <string name="text_dialog_logout_task_positive">Yes</string>
+    <string name="text_dialog_logout_task_negative">No</string>
+    <string name="text_icon_menu_logout">Logout</string>
+    <string name="text_logout_dialog">Do you want to Logout ?</string>
+    <string name="title_anime_list">Anime List</string>
 </resources>

@@ -1,15 +1,26 @@
 package com.catnip.animegogonity.di
 
-import com.catnip.animegogonity.data.Repository
-import com.catnip.animegogonity.data.RepositoryImpl
+import com.catnip.animegogonity.BuildConfig
+import com.catnip.animegogonity.data.firebase.FirebaseUserAuthDataSourceImpl
+import com.catnip.animegogonity.data.firebase.UserAuthDataSource
+import com.catnip.animegogonity.data.repository.AnimeRepository
+import com.catnip.animegogonity.data.repository.AnimeRepositoryImpl
 import com.catnip.animegogonity.data.network.api.datasource.GogoAnimeApiDataSource
 import com.catnip.animegogonity.data.network.api.datasource.GogoAnimeApiDataSourceImpl
 import com.catnip.animegogonity.data.network.api.service.GogoAnimeApiService
+import com.catnip.animegogonity.data.repository.UserRepository
+import com.catnip.animegogonity.data.repository.UserRepositoryImpl
 import com.catnip.animegogonity.presentation.adapter.HomeAdapter
+import com.catnip.animegogonity.presentation.ui.auth.AuthViewModel
 import com.catnip.animegogonity.presentation.ui.detail.AnimeDetailViewModel
 import com.catnip.animegogonity.presentation.ui.home.HomeViewModel
+import com.catnip.animegogonity.presentation.ui.main.MainViewModel
+import com.catnip.animegogonity.presentation.ui.splash.SplashViewModel
 import com.catnip.animegogonity.presentation.ui.webdetail.WebDetailViewModel
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -24,7 +35,7 @@ Github : https://github.com/hermasyp
 object AppModules {
 
     fun getModules(): List<Module> = listOf(
-        networkModule, dataSource, repository, viewModels, common, adapter
+        networkModule, dataSource, repository, viewModels, common, adapter, firebase
     )
 
     private val networkModule = module {
@@ -34,17 +45,22 @@ object AppModules {
 
     private val dataSource = module {
         single<GogoAnimeApiDataSource> { GogoAnimeApiDataSourceImpl(get()) } // singleton
+        single<UserAuthDataSource> { FirebaseUserAuthDataSourceImpl(get()) } // singleton
     }
 
     private val repository = module {
-        single<Repository> { RepositoryImpl(get()) } // singleton
+        single<AnimeRepository> { AnimeRepositoryImpl(get()) } // singleton
+        single<UserRepository> { UserRepositoryImpl(get()) } // singleton
     }
 
     private val viewModels = module {
         //Cara lain :  viewModelOf(::HomeViewModel)
         viewModel { HomeViewModel(get()) }
+        viewModelOf(::SplashViewModel)
+        viewModelOf(::AuthViewModel)
+        viewModelOf(::MainViewModel)
         viewModel { params -> WebDetailViewModel(params.get()) }
-        viewModel { params -> AnimeDetailViewModel(get(),params.get()) }
+        viewModel { params -> AnimeDetailViewModel(get(), params.get()) }
     }
 
     private val adapter = module {
@@ -53,6 +69,18 @@ object AppModules {
 
     private val common = module {
         single { Gson() }
+    }
+
+    private val firebase = module {
+        single { FirebaseAuth.getInstance() }
+        single { params ->
+            GoogleSignIn.getClient(
+                params.get(), GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(BuildConfig.FIREBASE_WEB_CLIENT_ID)
+                    .requestEmail()
+                    .build()
+            )
+        }
     }
 
 }

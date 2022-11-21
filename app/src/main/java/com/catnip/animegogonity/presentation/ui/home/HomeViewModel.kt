@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.catnip.animegogonity.R
 import com.catnip.animegogonity.base.wrapper.Resource
-import com.catnip.animegogonity.data.Repository
+import com.catnip.animegogonity.data.repository.AnimeRepository
 import com.catnip.animegogonity.presentation.ui.webdetail.uimodel.HomeItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-class HomeViewModel(private val animeRepository: Repository) : ViewModel() {
+class HomeViewModel(private val animeRepository: AnimeRepository) : ViewModel() {
 
     val homeDataResult = MutableLiveData<Resource<List<HomeItem>>>()
 

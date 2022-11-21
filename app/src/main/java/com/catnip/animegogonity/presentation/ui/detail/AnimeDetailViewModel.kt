@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.catnip.animegogonity.base.wrapper.Resource
-import com.catnip.animegogonity.data.Repository
+import com.catnip.animegogonity.data.repository.AnimeRepository
 import com.catnip.animegogonity.data.network.api.model.AnimeDetail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-class AnimeDetailViewModel(private val animeRepository: Repository, val intentData : Bundle) : ViewModel() {
+class AnimeDetailViewModel(private val animeRepository: AnimeRepository, val intentData : Bundle) : ViewModel() {
 
     val detailResult = MutableLiveData<Resource<AnimeDetail>>()
 

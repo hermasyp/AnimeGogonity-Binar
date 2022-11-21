@@ -1,17 +1,16 @@
-package com.catnip.animegogonity.data
+package com.catnip.animegogonity.data.repository
 
 import com.catnip.animegogonity.base.BaseRepository
 import com.catnip.animegogonity.base.wrapper.Resource
 import com.catnip.animegogonity.data.network.api.datasource.GogoAnimeApiDataSource
 import com.catnip.animegogonity.data.network.api.model.Anime
 import com.catnip.animegogonity.data.network.api.model.AnimeDetail
-import com.catnip.animegogonity.presentation.ui.webdetail.uimodel.HomeItem
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-interface Repository {
+interface AnimeRepository {
     suspend fun getAnimeList(page: Int = 1): Resource<List<Anime>>
 
     suspend fun getTopAiringList(page: Int = 1): Resource<List<Anime>>
@@ -23,7 +22,7 @@ interface Repository {
 }
 
 
-class RepositoryImpl(private val networkDataSource: GogoAnimeApiDataSource) : Repository, BaseRepository() {
+class AnimeRepositoryImpl(private val networkDataSource: GogoAnimeApiDataSource) : AnimeRepository, BaseRepository() {
     override suspend fun getAnimeList(page: Int): Resource<List<Anime>> {
         return doNetworkCall { networkDataSource.getAnimeList(page) }
     }
