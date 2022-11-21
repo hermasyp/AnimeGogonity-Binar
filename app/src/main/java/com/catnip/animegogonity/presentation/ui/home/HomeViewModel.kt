@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.catnip.animegogonity.R
 import com.catnip.animegogonity.base.wrapper.Resource
 import com.catnip.animegogonity.data.Repository
-import com.catnip.animegogonity.presentation.uimodel.HomeItem
+import com.catnip.animegogonity.presentation.ui.webdetail.uimodel.HomeItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -14,45 +14,37 @@ import kotlinx.coroutines.launch
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-
-//constructor injection
-class HomeViewModel(private val repository: Repository) : ViewModel() {
+class HomeViewModel(private val animeRepository: Repository) : ViewModel() {
 
     val homeDataResult = MutableLiveData<Resource<List<HomeItem>>>()
 
     fun getHomeData() {
         viewModelScope.launch(Dispatchers.IO) {
-            //post loading state
             homeDataResult.postValue(Resource.Loading())
-            //fetch data by sequence
-            val recentReleaseData = repository.getRecentReleaseAnimeList()
-            val topAiringData = repository.getTopAiringList()
-            val sectionAnimeListData = repository.getAnimeList()
-            //manipulate
+            val recentReleaseData = animeRepository.getRecentReleaseAnimeList()
+            val sectionTopAiringAnimeList = animeRepository.getTopAiringList()
+            val sectionAnimeList = animeRepository.getAnimeList()
+
             val homeItems = mutableListOf<HomeItem>()
             homeItems.apply {
                 recentReleaseData.payload?.let {
                     add(HomeItem.HomeHeaderItem(it.random()))
                 }
+                sectionTopAiringAnimeList.payload?.let {
+                    add(HomeItem.HomeSectionItem(R.string.top_airing_section, it))
+                }
                 recentReleaseData.payload?.let {
-                    add(HomeItem.HomeSectionItem(R.string.recent_release_section,it))
+                    add(HomeItem.HomeSectionItem(R.string.recent_release_section, it))
                 }
-                topAiringData.payload?.let {
-                    add(HomeItem.HomeSectionItem(R.string.top_airing_section,it))
-                }
-                sectionAnimeListData.payload?.let {
-                    add(HomeItem.HomeSectionItem(R.string.anime_list_section,it))
+                sectionAnimeList.payload?.let {
+                    add(HomeItem.HomeSectionItem(R.string.anime_list_section, it))
                 }
             }
-            //post the items
-            if(homeItems.isNotEmpty()){
+            if (homeItems.isNotEmpty()) {
                 homeDataResult.postValue(Resource.Success(homeItems))
-            }else{
+            } else {
                 homeDataResult.postValue(Resource.Empty())
             }
         }
-
     }
-
-
 }

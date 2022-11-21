@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
 import com.catnip.animegogonity.databinding.ItemHeaderHomeBinding
 import com.catnip.animegogonity.databinding.ItemSectionAnimeBinding
-import com.catnip.animegogonity.presentation.uimodel.HOME_TYPE_HEADER
-import com.catnip.animegogonity.presentation.uimodel.HomeItem
+import com.catnip.animegogonity.presentation.ui.detail.AnimeDetailActivity
+import com.catnip.animegogonity.presentation.ui.webdetail.uimodel.HOME_TYPE_HEADER
+import com.catnip.animegogonity.presentation.ui.webdetail.uimodel.HomeItem
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas
@@ -76,7 +77,7 @@ class HomeSectionItemViewHolder(private val binding: ItemSectionAnimeBinding) :
 
     private val adapter: AnimeListAdapter by lazy {
         AnimeListAdapter {
-            //AnimeDetailActivity.startActivity(itemView.context, it.animeId)
+            AnimeDetailActivity.startActivity(itemView.context, it.animeId)
         }
     }
 

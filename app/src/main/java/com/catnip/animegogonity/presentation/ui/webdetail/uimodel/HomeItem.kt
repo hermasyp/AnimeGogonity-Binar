@@ -1,4 +1,4 @@
-package com.catnip.animegogonity.presentation.uimodel
+package com.catnip.animegogonity.presentation.ui.webdetail.uimodel
 
 import androidx.annotation.StringRes
 import com.catnip.animegogonity.data.network.api.model.Anime
@@ -12,5 +12,7 @@ const val HOME_TYPE_SECTION = 1
 
 sealed class HomeItem(val type: Int) {
     class HomeHeaderItem(val data: Anime) : HomeItem(HOME_TYPE_HEADER)
-    class HomeSectionItem(@StringRes val sectionName: Int, val data: List<Anime>) : HomeItem(HOME_TYPE_SECTION)
+    class HomeSectionItem(@StringRes val sectionName: Int, val data: List<Anime>) : HomeItem(
+        HOME_TYPE_SECTION
+    )
 }

@@ -5,7 +5,7 @@ import com.catnip.animegogonity.base.wrapper.Resource
 import com.catnip.animegogonity.data.network.api.datasource.GogoAnimeApiDataSource
 import com.catnip.animegogonity.data.network.api.model.Anime
 import com.catnip.animegogonity.data.network.api.model.AnimeDetail
-import com.catnip.animegogonity.presentation.uimodel.HomeItem
+import com.catnip.animegogonity.presentation.ui.webdetail.uimodel.HomeItem
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas

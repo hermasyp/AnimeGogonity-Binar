@@ -6,6 +6,7 @@ import com.catnip.animegogonity.data.network.api.datasource.GogoAnimeApiDataSour
 import com.catnip.animegogonity.data.network.api.datasource.GogoAnimeApiDataSourceImpl
 import com.catnip.animegogonity.data.network.api.service.GogoAnimeApiService
 import com.catnip.animegogonity.presentation.adapter.HomeAdapter
+import com.catnip.animegogonity.presentation.ui.detail.AnimeDetailViewModel
 import com.catnip.animegogonity.presentation.ui.home.HomeViewModel
 import com.catnip.animegogonity.presentation.ui.webdetail.WebDetailViewModel
 import com.chuckerteam.chucker.api.ChuckerInterceptor
@@ -43,6 +44,7 @@ object AppModules {
         //Cara lain :  viewModelOf(::HomeViewModel)
         viewModel { HomeViewModel(get()) }
         viewModel { params -> WebDetailViewModel(params.get()) }
+        viewModel { params -> AnimeDetailViewModel(get(),params.get()) }
     }
 
     private val adapter = module {

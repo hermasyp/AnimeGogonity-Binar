@@ -24,6 +24,7 @@ class WebDetailActivity : BaseViewModelActivity<ActivityWebDetailBinding, WebDet
 
     override fun initView() {
         super.initView()
+        setupToolbar()
         setupWebView()
         viewModel.loadUrl()
     }
@@ -47,6 +48,15 @@ class WebDetailActivity : BaseViewModelActivity<ActivityWebDetailBinding, WebDet
         }
     }
 
+    private fun setupToolbar() {
+        title = intent.extras?.getString(EXTRAS_ANIME_NAME).orEmpty()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView() {

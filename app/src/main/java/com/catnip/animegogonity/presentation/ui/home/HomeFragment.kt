@@ -6,20 +6,22 @@ import com.catnip.animegogonity.base.BaseViewModelFragment
 import com.catnip.animegogonity.base.wrapper.Resource
 import com.catnip.animegogonity.databinding.FragmentHomeBinding
 import com.catnip.animegogonity.presentation.adapter.HomeAdapter
-import com.catnip.animegogonity.presentation.uimodel.HomeItem
-import org.koin.android.ext.android.inject
+import com.catnip.animegogonity.presentation.ui.webdetail.uimodel.HomeItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : BaseViewModelFragment<FragmentHomeBinding, HomeViewModel>(FragmentHomeBinding::inflate) {
+
+class HomeFragment :
+    BaseViewModelFragment<FragmentHomeBinding, HomeViewModel>(FragmentHomeBinding::inflate) {
 
     override val viewModel: HomeViewModel by viewModel()
 
-    //field injection
-    private val adapter : HomeAdapter by inject()
-
+    private val adapter: HomeAdapter by lazy {
+        HomeAdapter()
+    }
 
     override fun initView() {
         super.initView()
+        activity?.title = getString(R.string.title_anime_list)
         binding.rvHome.adapter = adapter
         viewModel.getHomeData()
     }
