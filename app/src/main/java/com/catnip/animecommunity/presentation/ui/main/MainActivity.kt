@@ -4,15 +4,24 @@ import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.catnip.animecommunity.R
 import com.catnip.animecommunity.base.BaseViewModelActivity
 import com.catnip.animecommunity.databinding.ActivityMainBinding
 import com.catnip.animecommunity.presentation.ui.auth.AuthActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseViewModelActivity<ActivityMainBinding,MainViewModel>(ActivityMainBinding::inflate) {
+
+class MainActivity : BaseViewModelActivity<ActivityMainBinding, MainViewModel>(ActivityMainBinding::inflate) {
 
     override val viewModel: MainViewModel by viewModel()
+
+    override fun initView() {
+        super.initView()
+        setupNav()
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_home, menu)
@@ -53,5 +62,10 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding,MainViewModel>(Ac
         })
     }
 
+    private fun setupNav(){
+        val navController: NavController =
+            Navigation.findNavController(this, R.id.activity_main_nav_host_fragment)
+        setupWithNavController(binding.bmvMain, navController)
+    }
 
 }

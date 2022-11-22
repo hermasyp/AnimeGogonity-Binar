@@ -14,4 +14,11 @@
     <string name="text_icon_menu_logout">Logout</string>
     <string name="text_logout_dialog">Do you want to Logout ?</string>
     <string name="title_anime_list">Anime List</string>
+    <string name="what_do_you_want_to_discuss">What do you want to discuss ?</string>
+    <string name="thread_title">Thread Title</string>
+    <string name="text_error_empty_title">Please Input thread title !</string>
+    <string name="text_error_empty_body">Please input thread body !</string>
+    <string name="title_fragment_home">Home</string>
+    <string name="title_fragment_thread">Thread</string>
+    <string name="text_container_display_creator_thread">Created by %s</string>
 </resources>

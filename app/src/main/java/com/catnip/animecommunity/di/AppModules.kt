@@ -16,6 +16,8 @@ import com.catnip.animecommunity.presentation.ui.detail.AnimeDetailViewModel
 import com.catnip.animecommunity.presentation.ui.home.HomeViewModel
 import com.catnip.animecommunity.presentation.ui.main.MainViewModel
 import com.catnip.animecommunity.presentation.ui.splash.SplashViewModel
+import com.catnip.animecommunity.presentation.ui.thread.ThreadViewModel
+import com.catnip.animecommunity.presentation.ui.threadform.ThreadFormViewModel
 import com.catnip.animecommunity.presentation.ui.webdetail.WebDetailViewModel
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -59,6 +61,8 @@ object AppModules {
         viewModelOf(::SplashViewModel)
         viewModelOf(::AuthViewModel)
         viewModelOf(::MainViewModel)
+        viewModelOf(::ThreadViewModel)
+        viewModelOf(::ThreadFormViewModel)
         viewModel { params -> WebDetailViewModel(params.get()) }
         viewModel { params -> AnimeDetailViewModel(get(), params.get()) }
     }
