@@ -1,15 +1,14 @@
 package com.catnip.animecommunity.di
 
 import com.catnip.animecommunity.BuildConfig
+import com.catnip.animecommunity.data.firebase.FirebaseThreadDataSource
 import com.catnip.animecommunity.data.firebase.FirebaseUserAuthDataSourceImpl
+import com.catnip.animecommunity.data.firebase.ThreadDataSource
 import com.catnip.animecommunity.data.firebase.UserAuthDataSource
-import com.catnip.animecommunity.data.repository.AnimeRepository
-import com.catnip.animecommunity.data.repository.AnimeRepositoryImpl
 import com.catnip.animecommunity.data.network.api.datasource.GogoAnimeApiDataSource
 import com.catnip.animecommunity.data.network.api.datasource.GogoAnimeApiDataSourceImpl
 import com.catnip.animecommunity.data.network.api.service.GogoAnimeApiService
-import com.catnip.animecommunity.data.repository.UserRepository
-import com.catnip.animecommunity.data.repository.UserRepositoryImpl
+import com.catnip.animecommunity.data.repository.*
 import com.catnip.animecommunity.presentation.adapter.HomeAdapter
 import com.catnip.animecommunity.presentation.ui.auth.AuthViewModel
 import com.catnip.animecommunity.presentation.ui.detail.AnimeDetailViewModel
@@ -23,6 +22,8 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -48,11 +49,13 @@ object AppModules {
     private val dataSource = module {
         single<GogoAnimeApiDataSource> { GogoAnimeApiDataSourceImpl(get()) } // singleton
         single<UserAuthDataSource> { FirebaseUserAuthDataSourceImpl(get()) } // singleton
+        single<ThreadDataSource> { FirebaseThreadDataSource(get()) } // singleton
     }
 
     private val repository = module {
         single<AnimeRepository> { AnimeRepositoryImpl(get()) } // singleton
         single<UserRepository> { UserRepositoryImpl(get()) } // singleton
+        single<ThreadRepository> { ThreadRepositoryImpl(get()) } // singleton
     }
 
     private val viewModels = module {
@@ -85,6 +88,7 @@ object AppModules {
                     .build()
             )
         }
+        single { Firebase.database }
     }
 
 }

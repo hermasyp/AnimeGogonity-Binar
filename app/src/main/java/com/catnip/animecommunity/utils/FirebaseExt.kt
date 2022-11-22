@@ -32,11 +32,9 @@ suspend fun DatabaseReference.setValueAsync(data: Any): Boolean {
         setValue(data)
             .addOnCompleteListener {
                 cont.resume(true, onCancellation = null)
-
             }
             .addOnCanceledListener {
                 cont.resume(false, onCancellation = null)
-
             }
             .addOnFailureListener {
                 cont.resumeWithException(it)
