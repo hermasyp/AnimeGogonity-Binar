@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.catnip.animegogonity'
+    namespace 'com.catnip.animecommunity'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.catnip.animegogonity"
+        applicationId "com.catnip.animecommunity"
         minSdk 21
         targetSdk 32
         versionCode 1

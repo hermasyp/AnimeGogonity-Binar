@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "560414414204",
+    "project_id": "animegogonity-binar",
+    "storage_bucket": "animegogonity-binar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560414414204:android:ceb09148f8726b2b1f40f9",
+        "android_client_info": {
+          "package_name": "com.catnip.animecommunity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560414414204-t7td5tfikja7h0j0mkrpr2uol94mcrte.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.catnip.animecommunity",
+            "certificate_hash": "f9f8587dedac72c03bd975e93d834bcb4a47593a"
+          }
+        },
+        {
+          "client_id": "560414414204-55rbaeat0ur36h3qep4ps79hgre1a35v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7gQa0gheNXQgZbtXOGoR68P3UcX1KFNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560414414204-55rbaeat0ur36h3qep4ps79hgre1a35v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
