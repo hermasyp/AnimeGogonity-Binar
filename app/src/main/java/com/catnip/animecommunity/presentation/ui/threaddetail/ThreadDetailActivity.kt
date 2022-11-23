@@ -31,6 +31,7 @@ class ThreadDetailActivity :
     private val adapter: SubThreadListAdapter by lazy {
         SubThreadListAdapter(
             viewModel.getSubThread(),
+            viewModel.getCurrentUser(),
             onDataExist = {
                 showData()
             },

@@ -44,5 +44,7 @@ class ThreadDetailViewModel(
         return SubThreadItem(content = content, creator = userRepository.getCurrentUser())
     }
 
+    fun getCurrentUser() = userRepository.getCurrentUser()
+
     fun getSubThread() = threadRepository.getSubThread(parentThread?.id.orEmpty())
 }
