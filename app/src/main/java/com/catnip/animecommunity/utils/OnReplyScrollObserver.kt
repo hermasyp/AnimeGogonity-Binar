@@ -15,8 +15,6 @@
  */
 package com.catnip.animecommunity.utils
 
-import android.view.View
-import android.widget.ScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
@@ -30,7 +28,14 @@ class OnReplyScrollObserver(
     override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
         super.onItemRangeInserted(positionStart, itemCount)
         val count = adapter.itemCount
-        recyclerView.smoothScrollToPosition(count - 1)
-
+        val lastVisiblePosition = manager.findLastCompletelyVisibleItemPosition()
+        // If the recycler view is initially being loaded or the
+        // user is at the bottom of the list, scroll to the bottom
+        // of the list to show the newly added message.
+        val loading = lastVisiblePosition == -1
+        val atBottom = positionStart >= count - 1 && lastVisiblePosition == positionStart - 1
+        if (loading || atBottom) {
+            recyclerView.scrollToPosition(positionStart)
+        }
     }
 }

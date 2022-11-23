@@ -8,6 +8,7 @@ import coil.transform.CircleCropTransformation
 import com.catnip.animecommunity.R
 import com.catnip.animecommunity.data.firebase.model.ThreadItem
 import com.catnip.animecommunity.databinding.ItemThreadBinding
+import com.catnip.animecommunity.presentation.ui.threaddetail.ThreadDetailActivity
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseError
@@ -32,7 +33,7 @@ class ThreadListAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ThreadItem) {
-            binding.ivProfilePict.load(item.creator?.photoProfileUrl){
+            binding.ivProfilePict.load(item.creator?.photoProfileUrl) {
                 crossfade(true)
                 placeholder(R.drawable.ic_person)
                 error(R.drawable.ic_person)
@@ -44,6 +45,9 @@ class ThreadListAdapter(
                 R.string.text_container_display_creator_thread,
                 item.creator?.displayName
             )
+            itemView.setOnClickListener {
+                ThreadDetailActivity.startActivity(itemView.context, item)
+            }
         }
 
     }

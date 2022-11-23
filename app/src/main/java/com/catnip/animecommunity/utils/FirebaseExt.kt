@@ -1,5 +1,7 @@
 package com.catnip.animecommunity.utils
 
+import android.content.Context
+import android.widget.Toast
 import com.catnip.animecommunity.data.firebase.model.User
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseUser
@@ -45,6 +47,10 @@ suspend fun DatabaseReference.setValueAsync(data: Any): Boolean {
     }
 }
 
+fun Context.showToast(msg: String) {
+    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+}
+
 @OptIn(ExperimentalCoroutinesApi::class)
 suspend fun DatabaseReference.setValueAppendId(mapData: (id: String) -> Any): Boolean {
     return suspendCancellableCoroutine { cont ->
@@ -60,7 +66,6 @@ suspend fun DatabaseReference.setValueAppendId(mapData: (id: String) -> Any): Bo
             .addOnFailureListener {
                 cont.resumeWithException(it)
             }
-
     }
 }
 

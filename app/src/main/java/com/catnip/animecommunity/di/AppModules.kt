@@ -16,6 +16,7 @@ import com.catnip.animecommunity.presentation.ui.home.HomeViewModel
 import com.catnip.animecommunity.presentation.ui.main.MainViewModel
 import com.catnip.animecommunity.presentation.ui.splash.SplashViewModel
 import com.catnip.animecommunity.presentation.ui.thread.ThreadViewModel
+import com.catnip.animecommunity.presentation.ui.threaddetail.ThreadDetailViewModel
 import com.catnip.animecommunity.presentation.ui.threadform.ThreadFormViewModel
 import com.catnip.animecommunity.presentation.ui.webdetail.WebDetailViewModel
 import com.chuckerteam.chucker.api.ChuckerInterceptor
@@ -66,6 +67,7 @@ object AppModules {
         viewModelOf(::MainViewModel)
         viewModelOf(::ThreadViewModel)
         viewModelOf(::ThreadFormViewModel)
+        viewModel { params -> ThreadDetailViewModel(get(), get(), params.get()) }
         viewModel { params -> WebDetailViewModel(params.get()) }
         viewModel { params -> AnimeDetailViewModel(get(), params.get()) }
     }
