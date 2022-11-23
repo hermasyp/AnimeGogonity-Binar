@@ -20,7 +20,7 @@ Github : https://github.com/hermasyp
  **/
 class SubThreadListAdapter(
     dataStream: FirebaseRecyclerOptions<SubThreadItem>,
-    private val currentUser: User?,
+    private val threadCreator: User?,
     private val onDataExist: () -> Unit,
     private val onLoading: (isLoading: Boolean) -> Unit,
     private val onDataEmpty: () -> Unit,
@@ -59,7 +59,7 @@ class SubThreadListAdapter(
     }
 
     override fun onBindViewHolder(holder: SubThreadItemViewHolder, position: Int, model: SubThreadItem) {
-        holder.bind(model,currentUser)
+        holder.bind(model,threadCreator)
     }
 
     override fun onDataChanged() {
