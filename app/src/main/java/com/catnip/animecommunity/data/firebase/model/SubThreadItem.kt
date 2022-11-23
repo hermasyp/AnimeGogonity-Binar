@@ -1,19 +1,16 @@
 package com.catnip.animecommunity.data.firebase.model
 
-import android.os.Parcelable
 import androidx.annotation.Keep
-import kotlinx.parcelize.Parcelize
+import java.util.*
 
 /**
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
 @Keep
-@Parcelize
-data class ThreadItem(
-    var id: String = "",
+data class SubThreadItem(
+    var id : String? = "",
     val creator: User? = null,
-    val title: String = "",
     val content: String = ""
-) : Parcelable
+)
 

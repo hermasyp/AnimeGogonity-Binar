@@ -1,6 +1,7 @@
 package com.catnip.animecommunity.data.firebase
 
 import com.catnip.animecommunity.data.firebase.model.ThreadItem
+import com.catnip.animecommunity.utils.setValueAppendId
 import com.catnip.animecommunity.utils.setValueAsync
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.FirebaseDatabase
@@ -17,16 +18,16 @@ interface ThreadDataSource {
 class FirebaseThreadDataSource(private val firebaseDatabase: FirebaseDatabase) : ThreadDataSource {
 
     override suspend fun createThread(threadItem: ThreadItem): Boolean {
-        return getChild().child(threadItem.id).setValueAsync(threadItem)
+        return getParentChild().push().setValueAppendId { id -> threadItem.apply { this.id = id } }
     }
 
     override fun getThread(): FirebaseRecyclerOptions<ThreadItem> {
         return FirebaseRecyclerOptions.Builder<ThreadItem>()
-            .setQuery(getChild(), ThreadItem::class.java)
+            .setQuery(getParentChild(), ThreadItem::class.java)
             .build()
     }
 
-    private fun getChild() = firebaseDatabase.reference.child(THREADS_CHILD)
+    private fun getParentChild() = firebaseDatabase.reference.child(THREADS_CHILD)
 
     companion object {
         private const val THREADS_CHILD = "threads"

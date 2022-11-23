@@ -12,7 +12,7 @@ import kotlin.coroutines.resumeWithException
 Written with love by Muhammad Hermas Yuda Pamungkas
 Github : https://github.com/hermasyp
  **/
-@OptIn(ExperimentalCoroutinesApi::class)
+
 suspend fun <T> Task<T>.await(): T {
     return suspendCancellableCoroutine { cont ->
         addOnCompleteListener {
@@ -32,9 +32,30 @@ suspend fun DatabaseReference.setValueAsync(data: Any): Boolean {
         setValue(data)
             .addOnCompleteListener {
                 cont.resume(true, onCancellation = null)
+
             }
             .addOnCanceledListener {
                 cont.resume(false, onCancellation = null)
+
+            }
+            .addOnFailureListener {
+                cont.resumeWithException(it)
+            }
+
+    }
+}
+
+@OptIn(ExperimentalCoroutinesApi::class)
+suspend fun DatabaseReference.setValueAppendId(mapData: (id: String) -> Any): Boolean {
+    return suspendCancellableCoroutine { cont ->
+        setValue(mapData(key.toString()))
+            .addOnCompleteListener {
+                cont.resume(true, onCancellation = null)
+
+            }
+            .addOnCanceledListener {
+                cont.resume(false, onCancellation = null)
+
             }
             .addOnFailureListener {
                 cont.resumeWithException(it)
